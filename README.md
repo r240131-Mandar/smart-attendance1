@@ -57,4 +57,5 @@ smart-attendance/
 ├── requirements.txt
 ├── JIRA_PLAN.md
 └── README.md
+Attendance marking form: teachers mark present/absent
 ```
