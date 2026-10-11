@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Attendance System</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: .75rem; border-bottom: 1px solid #ddd; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: .5rem .75rem; text-align: left; }
+    th { background: #f4f4f4; }
+    .low { color: #b00020; font-weight: 600; }
+    .flash { background: #eef6ff; padding: .5rem .75rem; border-radius: 4px; margin-bottom: 1rem; }
+    input, button { padding: .4rem .6rem; margin: .2rem 0; }
+  </style>
+</head>
+<body>
+  <nav>
+    <strong>Smart Attendance System</strong>
+    {% if session.role == 'teacher' %}
+      <a href="{{ url_for('mark') }}">Mark Attendance</a>
+      <a href="{{ url_for('report') }}">Low-Attendance Report</a>
+    {% elif session.role == 'student' %}
+      <a href="{{ url_for('my_attendance') }}">My Attendance</a>
+    {% endif %}
+    {% if session.user_id %}<a href="{{ url_for('logout') }}">Logout ({{ session.name }})</a>{% endif %}
+  </nav>
+  {% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+  {% block content %}{% endblock %}
+</body>
+</html>

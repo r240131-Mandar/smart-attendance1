@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Low-Attendance Report (below {{ threshold }}%)</h2>
+{% if rows %}
+<table>
+  <tr><th>Student</th><th>Subject</th><th>Attended</th><th>Total</th><th>Percentage</th></tr>
+  {% for r in rows %}
+  <tr><td>{{ r.student }}</td><td>{{ r.subject }}</td><td>{{ r.attended }}</td><td>{{ r.total }}</td><td class="low">{{ r.percent }}%</td></tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No students below the threshold.</p>
+{% endif %}
+{% endblock %}

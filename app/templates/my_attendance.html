@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Attendance</h2>
+{% if rows %}
+<table>
+  <tr><th>Subject</th><th>Attended</th><th>Total</th><th>Percentage</th></tr>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.subject }}</td><td>{{ r.attended }}</td><td>{{ r.total }}</td>
+    <td class="{{ 'low' if r.percent < threshold else '' }}">{{ r.percent }}%{% if r.percent < threshold %} (low){% endif %}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No attendance recorded yet.</p>
+{% endif %}
+{% endblock %}

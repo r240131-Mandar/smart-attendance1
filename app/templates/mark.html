@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Mark Attendance</h2>
+<form method="post">
+  <div>
+    <input name="subject" placeholder="Subject (e.g. ASDD)" required>
+    <input name="date" type="date" value="{{ today }}">
+  </div>
+  <table>
+    <tr><th>Student</th><th>Present</th></tr>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.name }}</td>
+      <td><input type="checkbox" name="present" value="{{ s.id }}" checked></td>
+    </tr>
+    {% endfor %}
+  </table>
+  <button type="submit">Save Attendance</button>
+</form>
+{% endblock %}
